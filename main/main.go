@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"github.com/gofiber/fiber/v2"
+	"log"
+)
 
 func main() {
-	fmt.Print("Go 언어로 백엔드 공부 시작")
+	app := fiber.New()
+
+	app.Get("/", func(ctx *fiber.Ctx) error {
+		return ctx.SendString("Server Listen By fiber\n")
+	})
+
+	log.Fatal(app.Listen(":3000"))
 }
